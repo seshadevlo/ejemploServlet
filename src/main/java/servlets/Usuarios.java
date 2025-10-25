@@ -1,13 +1,19 @@
 package servlets;
 
+
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import Models.Usuario;
 
 /**
  * Servlet implementation class Usuarios
@@ -22,8 +28,18 @@ public class Usuarios extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stubq
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		List<Usuario> listaUsuarios = new ArrayList<>();
+		listaUsuarios.add(new Usuario("19201255-8","seba","herna", "78457878"));
+		listaUsuarios.add(new Usuario("19202255-8","slel","tellett", "7845357878"));
+		listaUsuarios.add(new Usuario("19203255-8","ratrhnsa","homsef", "784543878"));
+		
+		HttpSession session =request.getSession();
+		session.setAttribute("listaUsuarios", listaUsuarios);
+		
+		//responder a la peticion
+		response.sendRedirect("mostrar-usuario.jsp");
+	
 	}
 
 	/**
