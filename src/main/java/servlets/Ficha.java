@@ -36,15 +36,24 @@ public class Ficha extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
 		String lenguaje = request.getParameter("lenguaje");
+		String [] intereses = request.getParameterValues("intereses");
+		String perfil = request.getParameter("perfil");
 		
 		
 		out.println("<html>"+"<head> <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css\" rel=\"stylesheet\"></head>"
 		+"<body>");
 		
-		out.println("<div class='container mt-5'>");//"<div></div>"
+		out.println("<div class='container mt-5'>");
 		out.println("<h1>Bienvenido"+" "+nombre+" "+apellido+"</h1>");
+		out.println("<h2>Tu perfil es:"+perfil+"</h2>");
 		out.println("tu lenguaje de programacion favorito es:"+" "+lenguaje);
-		
+		out.println("<ul>");
+		if(intereses!=null) {
+			for(String interes: intereses) {
+				out.println("<li class='list-group-item'>"+interes+"</li>");
+			}			
+		};
+		out.println("</ul>");		
 		out.println("</div>"+"</body>"+"</html>");
 						
 	}
